@@ -1,0 +1,26 @@
+jobs:
+  test1:
+    steps:
+    - name: negative
+      id: test1
+      uses: test/test-action@master
+      env:
+          TITLE: ${{ github.event.pull_request.title }}
+      run:  |
+        if [[ "$TITLE" =~ ^octocat ]]; then
+
+  test2:
+    steps:
+    - name: positive1
+      id: test1
+      uses: test/test-action@master
+      run:  |
+        if [[ ${{ github.event.pull_request.title }} =~ ^octocat ]]; then
+  
+  test3:
+    steps:
+    - name: positive2
+      id: test2
+      uses: test/test-action@master
+      run:  |
+        if [[ ${{ secrets.SLACK_WEBHOOK_URL }} =~ ^octocat ]]; then
